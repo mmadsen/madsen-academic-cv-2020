@@ -1,0 +1,273 @@
+%%% A template to produce a nice-looking Curriculum Vitae.
+%%% Kieran Healy <kjhealy@gmail.com>
+%%% Most recent version is at http://kjhealy.github.com/kjh-vita
+%%%
+%%% ------------------------------------------------------------------------
+%%% Requirements that are included in a modern tex distribution:
+%%% ------------------------------------------------------------------------
+%%% xelatex
+%%% fontspec.sty
+%%% hyperrref.sty
+%%% xunicode.sty
+%%% color.sty
+%%% url.sty
+%%% fancyhdr.sty
+%%% memoir.cls
+%%% fontawesome.sty
+%%%
+%%% 
+%%% 
+%%% ------------------------------------------------------------------------
+%%% Requirements from https://github.com/kjhealy/latex-custom-kjh
+%%% ------------------------------------------------------------------------
+%%% org-preamble-xelatex.sty
+%%% memoir-article-styles.sty
+%%%
+%%% ------------------------------------------------------------------------
+%%% Optional
+%%% ------------------------------------------------------------------------
+%%% git
+%%% vc.sty
+%%% revnum.sty
+%%% Fonts
+%%%
+%%% ------------------------------------------------------------------------
+%%% Note
+%%%------------------------------------------------------------------------
+%%% Because this is a hand-tweaked file, be on the look out for \medksip, 
+%%% \bigskip and \newpage commands here and there, which are used to balance
+%%% the layout or avoid widows & orphans, etc. You should of course add or 
+%%% remove these as needed.
+%%%------------------------------------------------------------------------
+
+\documentclass[11pt,article,oneside]{memoir}   
+\usepackage{org-preamble-xelatex} 
+\usepackage{fontawesome,url}
+\usepackage[citestyle=alphabetic,bibstyle=authoryear,sorting=ydnt,backend=bibtex]{biblatex}
+\addbibresource{madsen-full-bibliography.bib}
+
+
+%%%------------------------------------------------------------------------
+%%% Metadata
+%%%------------------------------------------------------------------------
+
+%% Change as needed. Or just add me as a coauthor. Only some of these are 
+%% used below in the hyperref declaration and address banner section.
+\def\myauthor{Mark E. Madsen}
+\def\mytitle{Vita}
+\def\mycopyright{\myauthor}
+\def\mykeywords{}
+\def\mybibliostyle{plain}
+\def\mybibliocommand{}
+\def\mysubtitle{}
+\def\myaffiliation{University of Washington}
+\def\myaddress{288 Willows Lane, Friday Harbor, WA 98250}
+\def\myemail{mark@madsenlab.org}
+\def\myweb{notebook.madsenlab.org}
+\def\myphone{(206) 355-8477}
+\def\myfax{}
+\def\mytwitter{@MarkEMadsen}
+\def\myversion{}
+\def\myrevision{}
+
+
+\def\myaffiliation{University of Washington}
+\def\myauthor{Mark E. Madsen}
+\date{} % not used (revision control instead)
+\def\mykeywords{Mark, Madsen, Mark E. Madsen, Vita, CV, Resume, Anthropology}
+
+%%%------------------------------------------------------------------------  
+%%% Git version tracking 
+%%%------------------------------------------------------------------------
+
+%% If you don't use git or the vc package (from CTAN), comment this out.
+%% If you comment it out, be sure to remove the \rfoot comment below, too.
+% \input{vc}
+
+%% uncomment if you want to use biblatex
+% \usepackage{enable-biblatex}
+
+%%%------------------------------------------------------------------------
+%%% Document
+%%%------------------------------------------------------------------------
+\begin{document}
+
+%% Choose fonts for use with xelatex
+%% Minion and Myriad are widely available, from Adobe. 
+%% Pragmata is available to buy at http://www.fsd.it/fonts/pragma.htm
+%% and is worth every penny. Any good monospace font will work fine, though.
+%% Consolas or inconsolata are good alternatives.
+
+%% Use Caladea instead, which is already available on the server
+\setromanfont[Mapping={tex-text}, 
+	Numbers={OldStyle},
+	Ligatures={Common}]%{Minion Pro}
+    {Caladea}
+    
+%% Use Cabin instead, which is already available on the server
+\setsansfont[Mapping=tex-text,
+	Ligatures={Common}, 
+	Colour=AA0000]%{Unit-Medium}
+    {Cabin}
+
+%% Use Fira Mono instead, which is already available on the server
+\setmonofont[Mapping=tex-text,Scale=0.85]%{PragmataPro} 
+{Fira Mono}
+
+% \newfontface\scheader[SmallCapsFont={Minion Pro},SmallCapsFeatures={Letters=SmallCaps}]{Minion Pro}
+%% Caladea doesn't have small caps, so don't use this.
+\let\scheader\relax
+
+% \newfontface\addressblock[Mapping={tex-text}, 
+% 	Numbers={OldStyle},
+% 	Ligatures={Common}]{Minion Pro Medium Caption}
+\newfontface\addressblock[Mapping={tex-text}, 
+	Numbers={OldStyle},
+	Ligatures={Common}]{Caladea}
+
+
+%%%------------------------------------------------------------------------
+%%% Local commands
+%%%------------------------------------------------------------------------
+
+%% Marginal header
+%% Note: as the document goes on you may need to introduce a (gradually increasing)
+%% \vspace element to keep the marginal header pleasingly aligned with the first 
+%% item in the body text. Like this: \marginhead{{\vskip 0.4em}Grants}, or 
+%% \marginhead{{\vskip 0.8em}Service}. Experiment as needed.
+\newcommand{\marginhead}[1]{\marginpar{\textsf{{\footnotesize\vspace{-1em}\flushright #1}}}}
+
+
+%% [optional] custom ampersand (font consistent with the one chosen above)
+% \newcommand{\amper}{{\fontspec[Scale=.95,Colour=AA0000]{Minion Pro Medium}\selectfont\&\,}}
+
+%% No bullets on labels
+\renewcommand{\labelitemi}{~} 
+
+%% Custom hanging indent for vita items
+\def\ind{\hangindent=1 true cm\hangafter=1 \noindent}
+%\def\ind{\hangindent=18pt\hangafter=1 \noindent}
+\def\labelitemi{~}
+\renewcommand{\labelitemii}{~}
+
+%%%------------------------------------------------------------------------
+%%% Page layout
+%%%------------------------------------------------------------------------
+
+% These lines will insert git revision info in the footer, using the vc
+% package---see docs for vc package for details. Comment out this line
+% if you're not using vc, and also remove the \input{vc} line above.
+\pagestyle{kjh}
+\thispagestyle{kjhgit}
+
+
+%%%------------------------------------------------------------------------
+%%% Address and contact block
+%%%------------------------------------------------------------------------
+\begin{minipage}[t]{2.95in}
+ \flushright {\footnotesize 
+ \href{http://anthropology.washington.edu}{Dept of Anthropology}, \\ University of Washington \\ 288 Willows Lane, \\ \vspace{-0.05in} Friday Harbor, \textsc{WA} 98250.}  
+  
+\end{minipage}
+\hfill     
+%\begin{minipage}[t]{0.0in}
+% dummy (needed here)
+%\end{minipage}
+\hfill
+\begin{minipage}[t]{1.3in}
+  \flushright \footnotesize  \addressblock \myphone \, \faPhone \\ 
+  {\scriptsize  \texttt{\href{http://twitter.com/MarkEMadsen}{\mytwitter}} \, \faTwitter }  \\ 
+  {\scriptsize  \texttt{\href{mailto:\myemail}{\myemail}} \, \faEnvelope} \\
+  {\scriptsize  \texttt{\href{\myweb}{\myweb}} \, \faGlobe}
+\end{minipage}
+
+\medskip
+
+%% Name 
+% \noindent{\LARGE\scheader \textsc{kieran healy}}
+\noindent{\Large\bfseries MARK E. MADSEN}
+\reversemarginpar
+
+\bigskip       
+
+
+\marginhead{\sffamily {{\vskip -0.23em} focus}}
+
+\noindent Evolutionary theory and human culture; evolutionary archaeology; cultural transmission theory and social learning; computational social science; quantitative methods
+
+\bigskip 
+
+%% Education
+
+\marginhead{\sffamily {{\vskip -0.23em} education}}
+
+\ind Ph.D, Anthropology, University of Washington, 2020.
+
+\ind \hspace{0.35in} \footnotesize Dissertation: \emph{Measuring Cultural Transmission at Archaeological Scales - How Can We Improve Empirical Sufficiency?} \normalsize \vspace{0.02in}
+
+\ind M.S., Anthropology, University of Wisconsin-Madison, 1990. \normalsize \vspace{0.01in}
+
+\ind B.A. (College \& Dept. Honors), Cum Laude, University of Washington, 1988.
+
+\bigskip
+
+%% Appointments
+% \medskip
+\marginhead{\sffamily {\vskip -0.3em} employment}
+
+\ind President and Chief Technology Officer, WattIQ, Inc., 2016--Present.      
+
+\ind Principal, Madsenlab Consulting, 2010--2016.
+
+\ind Director of Analytics, GridNetworks, Inc., 2008--2009.
+
+\ind Group/Senior Program Manager, Microsoft, Inc., 2005--2006.
+
+\ind co-Founder and V.P. Product Development, Network Clarity, Inc., 2002--2005.
+
+\ind Director of Software Engineering, InterNAP Network Services, Inc., 1997--2002.
+
+\ind Software Engineer, RealNetworks, Inc., 1995--1997.
+
+\ind Managing Partner, Pinpoint Venture Group., 1999--2005.
+
+\ind Co-Founder and Board Member, AllRecipes.com., 1995--2006.
+
+\bigskip
+
+\marginhead{\sffamily {\vskip -0.25em} service}
+
+\ind President and Trustee, San Juan Island Library District, 2009--Present.
+
+\ind Dist. 1 Board Member, Orcas Power and Light Cooperative, 2015--Present.
+
+\ind Former Chair, San Juan County Economic Development Council, 2011--Present.
+
+\ind Board Member \& Fmr. Chair, Seattle Arts and Lectures, 2011--2020.
+
+\ind Board Member \& Fmr. Chair, San Juan County Agricultural Guild, 2008--2013.
+
+ 
+%% Publications
+\marginhead{\sffamily {\vskip 2.2em} publications}
+
+\begin{refsection}
+\nocite{*}
+\printbibliography[type=article,heading=subbibliography,title={Journal Articles}]
+\end{refsection}
+
+\begin{refsection}
+\nocite{*}
+\printbibliography[type=incollection,heading=subbibliography,title={Book Chapters and Edited Volumes}]
+\end{refsection}
+
+\begin{refsection}
+\nocite{*}
+\printbibliography[type=inproceedings,heading=subbibliography,title={Invited Lectures and Conference Papers}]
+\end{refsection}
+
+
+
+\medskip
+
+\end{document}
